@@ -11,3 +11,5 @@ uicolorutil_INSTALL_PATH = /usr/local/bin
 uicolorutil_PRIVATE_FRAMEWORKS = UIKitServices UIKitCore
 
 include $(THEOS_MAKE_PATH)/tool.mk
+SUBPROJECTS += ctpios-gen
+include $(THEOS_MAKE_PATH)/aggregate.mk
