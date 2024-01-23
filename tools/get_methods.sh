@@ -31,6 +31,8 @@ read -r -d '' fileheader << MEOWMEOW
 
 #define NSPrintf(...)   printf( "%s", [[NSString stringWithFormat: __VA_ARGS__] UTF8String] )
 
+#define printColor(method, color)   NSPrintf(@"%s %@\n", method, [color representInHex])
+
 void printAllColorsMeow() {
 MEOWMEOW
 
@@ -39,7 +41,7 @@ outfile="./../gen.m"
 echo "$fileheader" > "$outfile"
 
 while IFS= read -r method; do
-    echo "	NSPrintf(@\"${method} -> %@\n\", [[UIColor ${method}] representInHex]);" >> "$outfile"
+    echo "	printColor(\"${method}\", [UIColor ${method}]);" >> "$outfile"
     #echo "	NSLog(@\"${method} -> %@\", [[UIColor ${method}] representInHex]);" >> "$outfile"
     #echo "	NSLog(@\"${method} -> %@\", [UIColor ${method}]);" >> "$outfile"
 done <<< "$method_names"
