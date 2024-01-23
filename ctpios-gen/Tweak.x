@@ -41,7 +41,7 @@
 +(id)systemBlackColor { return UIColorFromRGB(0x1e1e2e); }
 +(id)tableCellbackgroundColorCarPlay { return UIColorFromRGB(0x1e1e2e); }
 +(id)tableCellPlainBackgroundColor { return UIColorFromRGB(0x1e1e2e); }
-//+(id)clearColor { return UIColorFromRGB(0x1e1e2e); }
++(id)clearColor { return UIColorFromRGB(0x1e1e2e); }
 +(id)groupTableViewBackgroundColor { return UIColorFromRGB(0x1e1e2e); }
 +(id)darkTextColor { return UIColorFromRGB(0x1e1e2e); }
 +(id)systemLightMidGrayColor { return UIColorFromRGB(0xbac2de); }

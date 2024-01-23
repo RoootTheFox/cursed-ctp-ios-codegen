@@ -7,7 +7,7 @@ methods_tmp=$(grep -v '^*\|^/\*\|^#import\|^@property\|^@class\|^@end\|^@interfa
 # remove unwanted functions (initializers, functions that return void or BOOL, etc)
 methods_tmp=$(echo "$methods_tmp" | grep -Ev "^[+-]\(BOOL|void|unsigned long|Class|NSString \*|double|NSArray \*\)")
 # remove unwanted functions (wip, doesn't filter everything yet)
-methods_tmp=$(echo "$methods_tmp" | grep -Ev "^[+-]\(.*\)(resolvedColorWith|init|copy|_debug|loadDataWith|_colorBlendedWith|colorNamed|_dynamicCatalog|alloc|_apiColorNames|(read|writ)able|_disambiguated_due_to_CIImage|(CG|cg)Color;|classFallbacks|colorSpaceName|styleString)")
+methods_tmp=$(echo "$methods_tmp" | grep -Ev "^[+-]\(.*\)(resolvedColorWith|init|copy|_debug|loadDataWith|_colorBlendedWith|colorNamed|_dynamicCatalog|alloc|_apiColorNames|(read|writ)able|_disambiguated_due_to_CIImage|(CG|cg)Color;|classFallbacks|colorSpaceName|styleString|clearColor)")
 #echo "$methods_tmp"
 # TEMPORARILY: remove functions that take arguments or don't return (id) (until we can/need to work with them)
 methods_tmp=$(echo "$methods_tmp" | grep -E "^[+-]\(id\)" | grep -v ":\|)arg1")

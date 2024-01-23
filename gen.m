@@ -122,7 +122,6 @@ void printAllColorsMeow() {
 	printColor("systemDarkGrayColor", [UIColor systemDarkGrayColor]);
 	printColor("tableSeparatorLightColor", [UIColor tableSeparatorLightColor]);
 	printColor("tableCellPlainBackgroundColor", [UIColor tableCellPlainBackgroundColor]);
-	printColor("clearColor", [UIColor clearColor]);
 	printColor("secondarySystemFillColor", [UIColor secondarySystemFillColor]);
 	printColor("groupTableViewBackgroundColor", [UIColor groupTableViewBackgroundColor]);
 	printColor("tableCellDefaultSelectionTintColor", [UIColor tableCellDefaultSelectionTintColor]);
