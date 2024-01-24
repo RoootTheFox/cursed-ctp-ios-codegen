@@ -1,3 +1,3 @@
 static NSString *Flavor = @"mocha";
-static NSString *Accent = @"blue";
+static NSString *Accent = @"pink";
 
