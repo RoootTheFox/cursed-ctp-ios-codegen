@@ -27,7 +27,7 @@ done <<< "$color_list"
 #done
 
 # cursed codegen
-source mocha.sh
+source mappings.sh
 
 outfile="ctpios-gen/Tweak.x"
 
@@ -39,8 +39,10 @@ read -r -d '' fileheader << MEOWMEOW
 
 #import <UIKit/UIKit.h>
 #import <UIKit/UIColor.h>
+#import <Tweak.h>
 
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+// ColorHelper is shamelessly stolen from Echo
+#import "ColorHelper.h"
 
 %hook UIColor
 MEOWMEOW
@@ -53,7 +55,9 @@ for hex in "${!colors[@]}"; do
 		names=${colors[$hex]}
 		names=($names)
 		for name in "${names[@]}"; do
-			echo "+(id)${name} { return UIColorFromRGB(0x$repl); }" >> $outfile
+			if [ "$repl" == "placeholder" ]; then continue; fi
+			#echo "+(id)${name} { return UIColorFromRGB(0x$repl); }" >> $outfile
+			echo "+(id)${name} { return colors[${repl^^}]; }" >> $outfile
 		done
 		#printf "%s=%s\n" "$hex" "${colors[$hex]}"
 	else
@@ -61,4 +65,12 @@ for hex in "${!colors[@]}"; do
 	fi
 done
 
-echo "%end" >> $outfile
+read -r -d '' filefooter << MEOWMEOW
+%end
+
+%ctor {
+	[ColorHelper updateColors];
+}
+MEOWMEOW
+
+echo "$filefooter" >> $outfile
